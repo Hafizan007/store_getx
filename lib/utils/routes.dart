@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class Routes {
   static List<GetPage>? getPages = [
-    GetPage(name: '/product', page: () => const CharacterScreen()),
+    GetPage(name: '/character', page: () => const CharacterScreen()),
     GetPage(
         name: '/detail',
         page: () => const CharacterDetailScreen(),

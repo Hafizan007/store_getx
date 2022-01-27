@@ -65,7 +65,7 @@ class OnboardSecond extends StatelessWidget {
                               ElevatedButton(
                                 onPressed: () {
                                   box.write('firstime', true);
-                                  Get.offAndToNamed('/product');
+                                  Get.offAndToNamed('/character');
                                 },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,

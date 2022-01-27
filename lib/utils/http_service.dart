@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:dio/dio.dart';
 
 // ignore: constant_identifier_names
@@ -58,37 +57,27 @@ class HttpService {
 
       if (response.statusCode == 200) {
         return response;
-      } else if (response.statusCode == 404) {
-        return "404";
-      } else if (response.statusCode == 401) {
-        throw Exception("Unauthorized");
-      } else if (response.statusCode == 500) {
-        throw Exception("Server Error");
-      } else {
-        throw Exception("Something does wen't wrong");
       }
-    } on SocketException catch (e) {
-      return e;
     } on DioError catch (e) {
       if (e.type == DioErrorType.response) {
         if (e.response!.statusCode == 404) {
           return "404";
         } else if (e.response!.statusCode == 401) {
-          throw Exception("Unauthorized");
+          return "Unauthorized";
         } else if (e.response!.statusCode == 500) {
-          throw Exception("Server Error");
+          return "Server Error";
         } else {
-          throw Exception("Something does wen't wrong");
+          return "Something does wen't wrong";
         }
       }
       if (e.type == DioErrorType.connectTimeout) {
-        throw (e.message);
+        return e.message;
       }
       if (e.type == DioErrorType.other) {
-        throw Exception("Something does wen't wrong");
+        return "Something does wen't wrong";
       }
     } catch (e) {
-      throw Exception(e.toString());
+      return e.toString();
     }
   }
 }
